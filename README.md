@@ -1,0 +1,3 @@
+- **Shopping Cart**: Add, update, and remove items from the shopping cart.
+- **Order Placement**: Place orders and view order details.
+- **Order Tracking**: Track the status of orders.
