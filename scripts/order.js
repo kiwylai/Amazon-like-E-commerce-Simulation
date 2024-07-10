@@ -6,9 +6,12 @@ import { addToCart } from "../data/cart.js";
 
 async function loadPage() {
   await loadProductsFetch();
+
   let ordersHTML = "";
+
   orders.forEach((order) => {
     const orderTimeString = dayjs(order.orderTime).format("MMMM D");
+
     ordersHTML += `
       <div class="order-container">
         <div class="order-header">
@@ -37,6 +40,7 @@ async function loadPage() {
     let productsListHTML = "";
     order.products.forEach((productDetails) => {
       const product = getProduct(productDetails.productId);
+
       productsListHTML += `
         <div class="product-image-container">
           <img src="${product.image}">
