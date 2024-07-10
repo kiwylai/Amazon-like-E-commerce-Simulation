@@ -1,0 +1,17 @@
+at the beginning, localStorage.remove('cart')
+
+
+(at the beginning of Testing part)
+if have error like Uncaught TypeError: Cannot read properties of undefined (reading 'deliveryDays')
+
+localStorage.clear()
+
+
+Use delete to remove properties from objects.
+Use splice to remove elements from arrays efficiently.
+Use .remove() to delete DOM elements.
+
+
+test types:
+1. basic test cases = tests if the code is working
+2. edge cases = test with values that are tricky
