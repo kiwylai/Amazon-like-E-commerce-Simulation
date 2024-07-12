@@ -1,12 +1,25 @@
 import { cart, addToCart, calculateCartQuantity } from "../data/cart.js";
 import { products, loadProducts } from "../data/products.js";
-import { formatCurrency } from "./utils/money.js";
 
 loadProducts(renderProductsGrid);
 function renderProductsGrid() {
   let productsHTML = "";
+  const url = new URL(window.location.href);
+  const search = url.searchParams.get("search");
 
-  products.forEach((product) => {
+  console.log(search);
+
+  let filteredProducts = products;
+
+  if (search) {
+    filteredProducts = products.filter((product) => {
+      return product.name.toLowerCase().includes(search.toLowerCase());
+    });
+  }
+
+  console.log(filteredProducts);
+
+  filteredProducts.forEach((product) => {
     productsHTML += `
       <div class="product-container">
           <div class="product-image-container">
@@ -66,8 +79,6 @@ function renderProductsGrid() {
   document.querySelector(".js-products-grid").innerHTML = productsHTML;
 
   function updateCartQuantity() {
-    // const cartQuantity = calculateCartQuantity();
-
     document.querySelector(".js-cart-quantity").innerHTML =
       calculateCartQuantity();
   }
@@ -81,5 +92,10 @@ function renderProductsGrid() {
       addToCart(productId);
       updateCartQuantity();
     });
+  });
+
+  document.querySelector(".js-search-button").addEventListener("click", () => {
+    const search = document.querySelector(".js-search-input").value;
+    window.location.href = `amazon.html?search=${search}`;
   });
 }
