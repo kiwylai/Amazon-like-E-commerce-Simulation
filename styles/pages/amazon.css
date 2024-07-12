@@ -154,3 +154,14 @@
   padding: 8px;
   border-radius: 50px;
 }
+
+.product-info-section {
+  margin-bottom: 10px;
+}
+
+.product-info-section a,
+.product-info-section label,
+.product-info-section select {
+  display: block;
+  margin-bottom: 3px;
+}

@@ -65,17 +65,58 @@ export class Appliance extends Product {
 
 export class Clothing extends Product {
   sizeChartLink;
+  sizes;
+  colors;
 
   constructor(productDetails) {
     super(productDetails);
     this.sizeChartLink = productDetails.sizeChartLink;
+    this.sizes = productDetails.sizes;
+    this.colors = productDetails.colors;
   }
 
   extraInfoHTML() {
     return `
-    <a href="${this.sizeChartLink}" target="_blank">Size Chart</a>
-    `;
+       <div class="product-info-section">
+        <a href="${this.sizeChartLink}" target="_blank">Size Chart</a>
+      </div>
+      <div class="product-info-section">
+        <label for="color-${this.id}">Color:</label>
+        <select id="color-${this.id}" class="js-color-select">
+          ${this.colors
+            .map((color) => `<option value="${color}">${color}</option>`)
+            .join("")}
+        </select>
+      </div>
+      <div class="product-info-section">
+        <label for="size-${this.id}">Size:</label>
+        <select id="size-${this.id}" class="js-size-select">
+          ${this.sizes
+            .map((size) => `<option value="${size}">${size}</option>`)
+            .join("")}
+        </select>
+      </div>    `;
   }
+}
+
+export function renderProducts(filteredProducts) {
+  const productsGrid = document.querySelector(".js-products-grid");
+  productsGrid.innerHTML = ""; // Clear existing products
+  filteredProducts.forEach((product) => {
+    let productHTML = `
+      <div class="product-item">
+        <h3>${product.name}</h3>
+        <p>${product.keywords.join(", ")}</p>
+    `;
+
+    if (product instanceof Clothing) {
+      productHTML += product.extraInfoHTML();
+    }
+
+    productHTML += `</div>`;
+
+    productsGrid.innerHTML += productHTML;
+  });
 }
 
 export let products = [];
@@ -107,6 +148,9 @@ export function loadProducts(fun) {
   xhr.addEventListener("load", () => {
     products = JSON.parse(xhr.response).map((productDetails) => {
       if (productDetails.type === "clothing") {
+        productDetails.sizes = ["XXS", "XS", "S", "M", "L", "XL", "XXL"];
+        productDetails.colors = ["black", "blue", "red", "yellow", "pink"];
+
         return new Clothing(productDetails);
       }
       return new Product(productDetails);

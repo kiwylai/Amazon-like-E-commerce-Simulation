@@ -111,4 +111,28 @@ function renderProductsGrid() {
         )}`;
       }
     });
+
+  function attachEventListeners() {
+    document.querySelectorAll(".js-size-select").forEach((select) => {
+      select.addEventListener("change", (event) => {
+        const selectedSize = event.target.value;
+        const productId = event.target.id.split("-")[1];
+        console.log(`Selected size for product ${productId}: ${selectedSize}`);
+      });
+    });
+
+    document.querySelectorAll(".js-add-to-cart-button").forEach((button) => {
+      button.addEventListener("click", () => {
+        const productId = button.dataset.productId;
+        const sizeSelect = document.querySelector(`#size-${productId}`);
+        const size = sizeSelect ? sizeSelect.value : null;
+        addToCart(productId);
+      });
+    });
+  }
+
+  function renderAndAttachEvents(filteredProducts) {
+    renderProducts(filteredProducts);
+    attachEventListeners();
+  }
 }
