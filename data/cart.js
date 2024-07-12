@@ -99,6 +99,10 @@ export function updateDliveryOption(productId, deliveryOptionId) {
   saveToLocal();
 }
 
+export function resetCart() {
+  cart = [];
+  saveToStorage();
+}
 export function loadCart(fun) {
   const xhr = new XMLHttpRequest();
 
