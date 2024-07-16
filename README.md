@@ -1,6 +1,6 @@
 Description:
 
-A JavaScript-based Amazon clone that simulates an e-commerce platform. This project includes functionalities for adding products to the cart, selecting size and color for clothing items, checking out, placing orders, and tracking orders. The project showcases my skills in front-end development, asynchronous operations, and user interface design.
+A JavaScript-based Amazon clone that simulates an e-commerce platform. This project includes functionalities for adding products to the cart, selecting size and color for clothing items, checking out, placing orders, and tracking orders. The project showcases my skills in front-end development, asynchronous operations, and user interface design.The application is thoroughly tested using Jasmine to ensure reliability and performance.
 
 Features:
 
@@ -9,6 +9,8 @@ Add to Cart: Add items to the shopping cart with selected specifications.
 Checkout Process: Complete the purchase with a checkout process.
 Order Placement: Place orders and view order details.
 Order Tracking: Track the status of your orders.
+Functionality Test: Ensure reliability and performance
+
 
 Technologies Used:
 
@@ -16,6 +18,7 @@ JavaScript (ES6+),
 HTML5,
 CSS3,
 Day.js for date handling,
-Fetch API for asynchronous data loading
+Fetch API for asynchronous data loading,
+Jasmine
 
 https://kiwylai.github.io/Amazon-like-E-commerce-Simulation/
